@@ -1,10 +1,12 @@
-import os
 import shutil
+import argparse
 import datetime
 import subprocess
 
 from typing import *
 from pathlib import Path
+
+from colorama import init, Fore
 
 TO_LOCAL = 0
 TO_REMOTE = 1
@@ -13,12 +15,13 @@ home_folder = Path(__file__).resolve().home()
 local_config_folder = home_folder.joinpath(".config")
 remote_config_folder = Path(__file__).resolve().parent.joinpath(".config")
 
+init(autoreset=True)
+
 class MyUbuntu:
     my_config: List[Callable] = []
 
     def __init__(self) -> None:
-        if not remote_config_folder.exists():
-            remote_config_folder.mkdir(parents=True, exist_ok=True)
+        pass
 
     def __call__(self, func: Callable) -> None:
         self.my_config.append(func)
@@ -70,8 +73,7 @@ class MyUbuntu:
                         shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
                     )
                     text = result4.communicate()[0]
-                    if result4.returncode == 0:
-                        return True
+                    return True
         return False
 
     def copy_to_local(self):
@@ -210,6 +212,30 @@ def lunarvim(mode: int) -> None:
         print("Successfully copied local typora config")
 
 
+def get_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="A python script used for quickly clone configurations on a new Ubuntu")
+    parser.add_argument(
+        "-s", "--sync",
+        action="store_true", dest="sync",
+        help="sync configuration on this Ubuntu")
+    parser.add_argument(
+        "-u", "--update", 
+        action="store_true", dest="update",
+        help="update configuration using configuration on this Ubuntu")
+    return parser.parse_args()
+
+
+def main(args: argparse.Namespace):
+    assert not (args.sync and args.update), f"Conflict command! Can only be either sync or update!"
+    if args.sync:
+        jack_ubuntu.copy_to_local()
+    elif args.update:
+        jack_ubuntu.copy_to_remote()
+    else:
+        print("Nothing happened, use -h to see valid options, see you!")
+
+
 if __name__ == "__main__":
-    jack_ubuntu.copy_to_remote()
+    # jack_ubuntu.copy_to_remote()
     # jack_ubuntu.copy_to_local()
+    main(get_args())
