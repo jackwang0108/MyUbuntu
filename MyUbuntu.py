@@ -77,16 +77,16 @@ class MyUbuntu:
         return False
 
     def copy_to_local(self):
-        assert self._extract(), f"extract not fully functioned!"
+        assert self._extract(), f"{Fore.RED}extract not fully functioned!"
         for func in self.my_config:
-            print(f"{func.__name__}...")
+            print(f"{Fore.MAGENTA}{func.__name__}...")
             func(TO_LOCAL)
     
     def copy_to_remote(self):
         for func in self.my_config:
-            print(f"{func.__name__}...")
+            print(f"{Fore.MAGENTA}{func.__name__}...")
             func(TO_REMOTE)
-        assert self._compress(), "Compress not fully functioned!"
+        assert self._compress(), f"{Fore.RED}Compress not fully functioned!"
 
 
 jack_ubuntu = MyUbuntu()
@@ -99,21 +99,21 @@ def typora(mode: int) -> None:
     if mode == TO_LOCAL:
         if not local_path.exists():
             local_path.parent.mkdir(parents=True, exist_ok=True)
-            print("local path not exists, creating...")
+            print(f"{Fore.YELLOW}local path not exists, creating...")
         else:
             new_path = local_path.rename(f"{local_path}-{datetime.datetime.now()}")
-            print(f"{local_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{local_path} exists, rename to {new_path}")
         shutil.copyfile(str(remote_path), str(local_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
     if mode == TO_REMOTE:
         if remote_path.exists():
             new_path = remote_path.rename(f"{remote_path}-{datetime.datetime.now()}")
-            print(f"{remote_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{remote_path} exists, rename to {new_path}")
         else:
             remote_path.parent.mkdir(parents=True, exist_ok=True)
-            print(f"{remote_path.parent} not exists, creating...")
+            print(f"{Fore.YELLOW}{remote_path.parent} not exists, creating...")
         shutil.copyfile(str(local_path), str(remote_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
 
 
 @jack_ubuntu
@@ -123,21 +123,21 @@ def picogo(mode: int) -> None:
     if mode == TO_LOCAL:
         if not local_path.exists():
             local_path.parent.mkdir(parents=True, exist_ok=True)
-            print("local path not exists, creating...")
+            print(f"{Fore.YELLOW}local path not exists, creating...")
         else:
             new_path = local_path.rename(f"{local_path}-{datetime.datetime.now()}")
-            print(f"{local_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{local_path} exists, rename to {new_path}")
         shutil.copyfile(str(remote_path), str(local_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
     if mode == TO_REMOTE:
         if remote_path.exists():
             new_path = remote_path.rename(f"{remote_path}-{datetime.datetime.now()}")
-            print(f"{remote_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{remote_path} exists, rename to {new_path}")
         else:
             remote_path.parent.mkdir(parents=True, exist_ok=True)
-            print(f"{remote_path.parent} not exists, creating...")
+            print(f"{Fore.YELLOW}{remote_path.parent} not exists, creating...")
         shutil.copyfile(str(local_path), str(remote_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
 
 
 @jack_ubuntu
@@ -147,21 +147,21 @@ def synth_shell(mode: int) -> None:
     if mode == TO_LOCAL:
         if not local_path.exists():
             local_path.parent.mkdir(parents=True, exist_ok=True)
-            print("local path not exists, creating...")
+            print(f"{Fore.YELLOW}local path not exists, creating...")
         else:
             new_path = local_path.rename(f"{local_path}-{datetime.datetime.now()}")
-            print(f"{local_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{local_path} exists, rename to {new_path}")
         shutil.copyfile(str(remote_path), str(local_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
     if mode == TO_REMOTE:
         if remote_path.exists():
             new_path = remote_path.rename(f"{remote_path}-{datetime.datetime.now()}")
-            print(f"{remote_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{remote_path} exists, rename to {new_path}")
         else:
             remote_path.parent.mkdir(parents=True, exist_ok=True)
-            print(f"{remote_path.parent} not exists, creating...")
+            print(f"{Fore.YELLOW}{remote_path.parent} not exists, creating...")
         shutil.copyfile(str(local_path), str(remote_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
 
 
 @jack_ubuntu
@@ -171,21 +171,21 @@ def terminator(mode: int) -> None:
     if mode == TO_LOCAL:
         if not local_path.exists():
             local_path.parent.mkdir(parents=True, exist_ok=True)
-            print("local path not exists, creating...")
+            print(f"{Fore.YELLOW}local path not exists, creating...")
         else:
             new_path = local_path.rename(f"{local_path}-{datetime.datetime.now()}")
-            print(f"{local_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{local_path} exists, rename to {new_path}")
         shutil.copyfile(str(remote_path), str(local_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
     if mode == TO_REMOTE:
         if remote_path.exists():
             new_path = remote_path.rename(f"{remote_path}-{datetime.datetime.now()}")
-            print(f"{remote_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{remote_path} exists, rename to {new_path}")
         else:
             remote_path.parent.mkdir(parents=True, exist_ok=True)
-            print(f"{remote_path.parent} not exists, creating...")
+            print(f"{Fore.YELLOW}{remote_path.parent} not exists, creating...")
         shutil.copyfile(str(local_path), str(remote_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
 
 
 @jack_ubuntu
@@ -195,44 +195,44 @@ def lunarvim(mode: int) -> None:
     if mode == TO_LOCAL:
         if not local_path.exists():
             local_path.parent.mkdir(parents=True, exist_ok=True)
-            print("local path not exists, creating...")
+            print(f"{Fore.YELLOW}local path not exists, creating...")
         else:
             new_path = local_path.rename(f"{local_path}-{datetime.datetime.now()}")
-            print(f"{local_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{local_path} exists, rename to {new_path}")
         shutil.copyfile(str(remote_path), str(local_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
     if mode == TO_REMOTE:
         if remote_path.exists():
             new_path = remote_path.rename(f"{remote_path}-{datetime.datetime.now()}")
-            print(f"{remote_path} exists, rename to {new_path}")
+            print(f"{Fore.YELLOW}{remote_path} exists, rename to {new_path}")
         else:
             remote_path.parent.mkdir(parents=True, exist_ok=True)
-            print(f"{remote_path.parent} not exists, creating...")
+            print(f"{Fore.YELLOW}{remote_path.parent} not exists, creating...")
         shutil.copyfile(str(local_path), str(remote_path))
-        print("Successfully copied local typora config")
+        print(f"{Fore.GREEN}Successfully copied local typora config")
 
 
 def get_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="A python script used for quickly clone configurations on a new Ubuntu")
+    parser = argparse.ArgumentParser(description=f"{Fore.GREEN}A python script used for quickly clone configurations on a new Ubuntu{Fore.RESET}")
     parser.add_argument(
         "-s", "--sync",
         action="store_true", dest="sync",
-        help="sync configuration on this Ubuntu")
+        help=f"{Fore.YELLOW}sync configuration on this Ubuntu{Fore.RESET}")
     parser.add_argument(
         "-u", "--update", 
         action="store_true", dest="update",
-        help="update configuration using configuration on this Ubuntu")
+        help=f"{Fore.YELLOW}update configuration using configuration on this Ubuntu{Fore.RESET}")
     return parser.parse_args()
 
 
 def main(args: argparse.Namespace):
-    assert not (args.sync and args.update), f"Conflict command! Can only be either sync or update!"
+    assert not (args.sync and args.update), f"{Fore.RED}Conflict command! Can only be either sync or update!"
     if args.sync:
         jack_ubuntu.copy_to_local()
     elif args.update:
         jack_ubuntu.copy_to_remote()
     else:
-        print("Nothing happened, use -h to see valid options, see you!")
+        print(f"{Fore.GREEN}Nothing happened, use -h to see valid options, see you!")
 
 
 if __name__ == "__main__":
